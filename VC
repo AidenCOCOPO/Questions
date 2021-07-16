@@ -1,0 +1,37 @@
+class Solution:
+    def isBadVersion(self, n):
+        if n > 5:
+            return True
+        else:
+            return False
+
+    def firstBadVersion(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        alist = [x for x in range(1, n+1)]
+        left = 0
+        right = len(alist) - 1
+        first, last = binarySearch(self, alist, left, right)
+        for version in alist[first: last + 1]:
+            if isBadVersion(version):
+                return version
+
+    def binarySearch(self, alist, left, right):
+        if len(alist) == 0:
+            return mid
+        else:
+            mid = (left + right) // 2
+            if isBadVersion(alist(mid)):
+                right = mid + 1
+                if isBadVersion(alist[(left + right) // 2]):
+                    return (left, (left + right) // 2)
+                else:
+                    return binarySearch(self, alist, left, right)
+            if not isBadVersion(alist(mid)):
+                left = mid
+                return binarySearch(self, alist, left, right)
+
+s = Solution()
+print(s.firstBadVersion(9))
